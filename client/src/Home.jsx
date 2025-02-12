@@ -1,295 +1,262 @@
-import React from 'react';
-import { Container, Nav, Navbar, Button, Row, Col, Card, Carousel } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import logo from './assets/l.png';
-import bg from './assets/bg.jpg';
-import a from './assets/vitaminA.jpg';
-import b from './assets/vitaminB.jpg';
-import c from './assets/vitaminC.jpg';
-import vitamin from './assets/file.png';
-import pd from './assets/pd.jpg';
-import vd from './assets/vd.jpg';
-import qz from './assets/qz.jpg';
-
-
-
-
-
-
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "./assets/l.png";
+import bg from "./assets/bg.jpg";
+import vitamin from "./assets/file.png";
+import pd from "./assets/pd.jpg";
+import vd from "./assets/vd.jpg";
+import qz from "./assets/qz.jpg";
+import fb from "./assets/fb.svg";
+import twitter from "./assets/twitter.svg";
+import instagram from "./assets/instagram.svg";
+import linkedin from "./assets/linkedin.svg";
 
 function Home() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  };
 
   return (
     <>
-      {/* Internal CSS with a professional and modern design */}
-      <style>{`
-        body {
-          font-family: 'Arial', sans-serif;
-          background-color: #f4f7f9;
-          margin: 0;
-          padding: 0;
-        }
-        .navbar {
-          background: rgba(28, 61, 90, 0.8) !important; /* Semi-transparent dark blue */
-        }
-        .navbar-brand img {
-          height: 60px; /* Increased logo size */
-          margin-right: 10px;
-        }
-        .navbar-nav .nav-link {
-          color: #ffffff !important;
-          font-weight: 500;
-          margin: 0 15px;
-        }
-        .navbar-nav .nav-link:hover {
-          text-decoration: underline;
-        }
-        .hero-section {
-          height: 60vh;
-          background: linear-gradient(rgba(28, 61, 90, 0.8), rgba(28, 61, 90, 0.8)), url(${bg}) no-repeat center center/cover;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          text-align: center;
-          padding: 0 20px;
-        }
-        .hero-section h1 {
-          font-size: 3rem;
-          margin-bottom: 15px;
-          font-weight: bold;
-        }
-        .hero-section p {
-          font-size: 1.25rem;
-          max-width: 600px;
-          margin: auto;
-        }
-        .section-title {
-          color: #1c3d5a;
-          font-weight: bold;
-          margin: 30px 0;
-          text-align: center;
-        }
-        .carousel-item img {
-          width: 100%;
-          height: 400px;
-          object-fit: cover;
-          border-radius: 10px;
-        }
-        .btn-custom {
-          background-color: #0069d9;
-          border: none;
-          color: white;
-          padding: 10px 25px;
-          border-radius: 4px;
-          font-size: 1rem;
-          transition: background-color 0.3s ease;
-        }
-        .btn-custom:hover {
-          background-color: #004a9f;
-        }
-        .card {
-          border: none;
-          border-radius: 10px;
-          transition: transform 0.3s ease;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-          overflow: hidden;
-        }
-        .card:hover {
-          transform: translateY(-5px);
-        }
-        .card img {
-          height: 200px;
-          object-fit: cover;
-        }
-        .card-body {
-          padding: 20px;
-        }
-        footer {
-          background-color: #343a40;
-          padding: 20px;
-          color: white;
-          text-align: center;
-        }
-        footer p {
-          margin: 0;
-          color: #d3dbe4;
-        }
-          .text-justify {
-  text-align: justify;
-}
-
-        
-        .carousel-caption {
-          background-color: rgba(0, 0, 0, 0.5);
-          padding: 20px;
-          border-radius: 5px;
-        }
-        .carousel-caption h3,
-        .carousel-caption p {
-         color: white;
-         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-        }
-
-</style>
-
-      `}</style>
-
       {/* Navbar */}
-     {/* Navbar */}
-<Navbar expand="lg" className="navbar sticky-top">
-  <Container>
-    <Navbar.Brand href="/">
-      <img src={logo} alt="Vitaguide Logo" />
-      <span style={{ color: 'white', fontSize: '1.5rem', fontWeight: 'bold' }}>VitaGuide</span>
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="me-auto">
-        <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="/personal-details">Personal Details</Nav.Link>
-        <Nav.Link href="/vitamin-form">Vitamin Deficiencies</Nav.Link>
-        <Nav.Link href="/quizzes">Quizzes</Nav.Link>
-        <Nav.Link href="/feedback-form">Feedback</Nav.Link>
-      </Nav>
-      <div className="d-flex">
-        <Button href="/login" className="btn-custom me-2">Login</Button>
-        <Button href="/signup" className="btn-custom">Sign Up</Button>
-      </div>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
-
+      <nav className="bg-white shadow-md sticky top-0 z-10 p-4">
+        <div className="container mx-auto flex items-center justify-between">
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="VitaGuide Logo" className="h-10 mr-3" />
+            <span className="text-2xl font-bold text-gray-800">VitaGuide</span>
+          </Link>
+          <div className="hidden md:flex space-x-6">
+            <Link
+              to="/home"
+              className="text-gray-700 hover:text-blue-600 font-medium"
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              className="text-gray-700 hover:text-blue-600 font-medium"
+            >
+              About
+            </Link>
+            <Link
+              to="/foodsources"
+              className="text-gray-700 hover:text-blue-600 font-medium"
+            >
+              Food Sources
+            </Link>
+            <Link
+              to="/symptomslist"
+              className="text-gray-700 hover:text-blue-600 font-medium"
+            >
+              Vitamin Deficiencies
+            </Link>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+          >
+            Logout
+          </button>
+        </div>
+      </nav>
 
       {/* Hero Section */}
-      <div className="hero-section">
-        <div>
-          <h1>Welcome{user ? `, ${user.email}` : ''}!</h1>
-          <p>Your comprehensive guide to improving your child's nutrition through tailored insights and actionable guidance.</p>
+      <header
+        className="hero-section flex items-center justify-center text-center h-screen bg-cover bg-center text-white"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${bg})`,
+        }}
+      >
+        <div className="max-w-3xl px-8">
+          <h1 className="text-5xl font-bold mb-4">
+            Empowering Parents with Nutritional Insights
+          </h1>
+          <p className="text-lg md:text-2xl mb-8">
+            VitaGuide helps you personalize your child’s nutrition and health
+            needs with expert-driven insights.
+          </p>
+          <Link
+            to="#feature"
+            className="bg-white text-blue-600 font-bold py-3 px-6 rounded-full hover:bg-blue-100 transition duration-300"
+          >
+            Get Started
+          </Link>
         </div>
-      </div>
+      </header>
 
-      {/* Why Vitaguide Section */}
-<Container className="mt-5">
-  <h2 className="section-title">Why Vitaguide?</h2>
-  <Row className="align-items-center">
-    <Col md={6}>
-      <p className="text-justify">
-        Vitaguide provides personalized solutions to manage vitamin deficiencies in children by integrating
-        technology and health insights to offer real-time advice and dietary guidance. Our platform not only
-        identifies deficiencies but also suggests targeted dietary changes, helping parents ensure their children
-        receive the essential nutrients necessary for healthy growth and development.
-        With Vitaguide, you can easily track your child's vitamin intake, receive reminders for dietary adjustments,
-        and access a wealth of resources on nutrition. Our user-friendly interface allows parents to quickly
-        understand the nutritional needs of their children and make informed decisions about their diets.
-        Join our community and embark on a journey towards better nutrition! Sign up today and take the first
-        step towards ensuring a healthier future for your child.
-      </p>
-    </Col>
-    <Col md={6}>
-      <img
-        src={vitamin}
-        alt="Healthy Eating"
-        className="img-fluid rounded"
-        style={{ maxHeight: '400px', objectFit: 'cover' }}
-      />
-    </Col>
-  </Row>
-</Container>
-
-
-      {/* Vitamins Carousel Section */}
-      <Container className="mt-5">
-        <h2 className="section-title">Key Vitamins</h2>
-        <Carousel>
-          <Carousel.Item>
-            <img className="d-block w-100" src={a} alt="Vitamin A" />
-            <Carousel.Caption>
-              <h3>Vitamin A</h3>
-              <p>Essential for eye health, immune function, and supporting skin integrity. A must-have for every growing child!</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img className="d-block w-100" src={b} alt="Vitamin B" />
-            <Carousel.Caption>
-              <h3>Vitamin B</h3>
-              <p>Important for energy production, brain health, and cell metabolism. Keep your child energized and focused!</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img className="d-block w-100" src={c} alt="Vitamin C" />
-            <Carousel.Caption>
-              <h3>Vitamin C</h3>
-              <p>Vital for skin health, tissue repair, and boosting the immune system. A key player in your child's overall health!</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
-      </Container>
-
-      
-
-
-      {/* Cards Section for Main Actions */}
-      <Container className="mt-5">
-        <h2 className="section-title">Get Started</h2>
-        <Row>
-          <Col md={4}>
-            <Card className="mb-4">
-              <Card.Img variant="top" src={pd} />
-              <Card.Body>
-                <Card.Title>Personal Details</Card.Title>
-                <Card.Text>
-                  Fill in your child's personal details to receive customized dietary advice tailored to their specific needs.
-                </Card.Text>
-                <Button href="/personal-details" className="btn-custom">Fill Personal Details</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}>
-            <Card className="mb-4">
-              <Card.Img variant="top" src={vd} />
-              <Card.Body>
-                <Card.Title>Vitamin Deficiencies</Card.Title>
-                <Card.Text>
-                  Assess your child's vitamin intake and identify potential deficiencies to improve their health and vitality.
-                </Card.Text>
-                <Button href="/vitamin-form" className="btn-custom">Check Deficiencies</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md={4}>
-            <Card className="mb-4">
-              <Card.Img variant="top" src={qz} />
-              <Card.Body>
-                <Card.Title>Quizzes</Card.Title>
-                <Card.Text>
-                  Engage your child with fun quizzes to enhance their understanding of nutrition and the importance of vitamins.
-                </Card.Text>
-                <Button href="/quizzes" className="btn-custom">Take Quizzes</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-
-      {/* Feedback Section */}
-      <Container className="mt-5">
-        <Row className="justify-content-center">
-          <Col md={8} lg={6} className="text-center">
-            <h2 className="section-title">Feedback</h2>
-            <p>
-              Help us improve Vitaguide by providing your valuable feedback. Your opinions will help us enhance the platform.
+      {/* Features Section */}
+      <section className="container mx-auto px-4 mt-16" id="feature">
+        <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-800">
+          Explore VitaGuide Features
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Personal Details Card */}
+          <div className="flex flex-col items-center bg-gradient-to-r from-green-50 via-white to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+            <img
+              src={pd}
+              alt="Food Sources"
+              className="w-32 h-32 mb-6 rounded-full shadow-md hover:shadow-xl transition-transform duration-300 transform hover:scale-105"
+            />
+            <h3 className="text-2xl font-semibold text-blue-900 mb-3">
+              Food Sources
+            </h3>
+            <p className="text-gray-600 text-center mb-4">
+              Discover essential vitamin-rich foods to support your child’s
+              health and well-being.
             </p>
-            <Button href="/feedback-form" className="btn-custom">Give Feedback</Button>
-          </Col>
-        </Row>
-      </Container><br />
+            <Link
+              to="/foodsources"
+              className="mt-4 bg-blue-500 text-white font-semibold py-3 px-6 rounded-full hover:bg-blue-600 transition duration-300"
+            >
+              Learn More
+            </Link>
+          </div>
 
+          {/* Vitamin Deficiencies Card */}
+          <div className="flex flex-col items-center bg-gradient-to-r from-blue-50 via-white to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+            <img
+              src={vd}
+              alt="Vitamin Deficiencies"
+              className="w-32 h-32 mb-6 rounded-full shadow-md hover:shadow-xl transition-transform duration-300 transform hover:scale-105"
+            />
+            <h3 className="text-2xl font-semibold text-blue-900 mb-3">
+              Vitamin Deficiencies
+            </h3>
+            <p className="text-gray-600 text-center mb-4">
+              Discover possible vitamin deficiencies and get dietary advice to
+              address them.
+            </p>
+            <Link
+              to="/toddlerform"
+              className="mt-4 bg-blue-500 text-white font-semibold py-3 px-6 rounded-full hover:bg-blue-600 transition duration-300"
+            >
+              Explore
+            </Link>
+          </div>
 
-      {/* Footer Section */}
-      <footer>
-        <p>&copy; 2024 Vitaguide. All Rights Reserved.</p>
+          {/* Quizzes Card */}
+          <div className="flex flex-col items-center bg-gradient-to-r from-blue-50 via-white to-blue-50 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+            <img
+              src={qz}
+              alt="Quizzes"
+              className="w-32 h-32 mb-6 rounded-full shadow-md hover:shadow-xl transition-transform duration-300 transform hover:scale-105"
+            />
+            <h3 className="text-2xl font-semibold text-blue-900 mb-3">
+              Engaging Quizzes
+            </h3>
+            <p className="text-gray-600 text-center mb-4">
+              Test your knowledge on health and nutrition through fun,
+              interactive quizzes.
+            </p>
+            <Link
+              to="/quiz"
+              className="mt-4 bg-blue-500 text-white font-semibold py-3 px-6 rounded-full hover:bg-blue-600 transition duration-300"
+            >
+              Take a Quiz
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="container mx-auto px-4 mt-20 mb-5  text-center">
+        <h2 className="text-4xl font-extrabold text-gray-800 mb-6">
+          We Value Your Feedback!
+        </h2>
+        <p className="text-lg text-gray-600 mb-8">
+          Share your thoughts and help us improve VitaGuide’s tools for a
+          healthier journey. We’re listening!
+        </p>
+        <Link
+          to="/feedback"
+          className="bg-blue-500 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-blue-600 transition duration-300"
+        >
+          Give Feedback
+        </Link>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-10">
+        <div className="container mx-auto px-4 md:flex md:justify-between md:items-center text-center md:text-left">
+          {/* Logo and Description */}
+          <div className="mb-6 md:mb-0 md:w-1/3">
+            <div className="flex items-center justify-center md:justify-start mb-4">
+              <img src={logo} alt="VitaGuide Logo" className="h-12 mr-3" />
+              <span className="text-2xl font-semibold">VitaGuide</span>
+            </div>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex space-x-6 justify-center md:justify-start mb-6 md:mb-0">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <img
+                src={fb}
+                alt="Facebook"
+                className="h-8 transition-transform transform hover:scale-110"
+              />
+            </a>
+            <a
+              href="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <img
+                src={twitter}
+                alt="Twitter"
+                className="h-8 transition-transform transform hover:scale-110"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <img
+                src={instagram}
+                alt="Instagram"
+                className="h-8 transition-transform transform hover:scale-110"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <img
+                src={linkedin}
+                alt="LinkedIn"
+                className="h-8 transition-transform transform hover:scale-110"
+              />
+            </a>
+          </div>
+
+          {/* Links and Copyright */}
+          <div className="text-sm md:w-1/3 text-gray-400 mt-6 md:mt-0">
+            <p className="mb-2">&copy; 2024 VitaGuide. All Rights Reserved.</p>
+            <p>
+              <Link to="/privacy" className="hover:text-white hover:underline">
+                Privacy Policy
+              </Link>{" "}
+              |
+              <Link
+                to="/terms"
+                className="hover:text-white hover:underline ml-1"
+              >
+                Terms of Service
+              </Link>
+            </p>
+          </div>
+        </div>
       </footer>
     </>
   );
